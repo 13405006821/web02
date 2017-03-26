@@ -11,10 +11,6 @@ public interface IBaseDao<T> {
 	 */
 	public T load(Long id);
 
-	public T load(int id);
-
-	public T load(String id);
-
 	/**
 	 * 添加一个对象
 	 * 
@@ -31,10 +27,6 @@ public interface IBaseDao<T> {
 	 * @param obj
 	 * @return
 	 */
-	public T updatef(T obj);
-
-	public T updateClear(T obj);
-
 	public T update(T obj);
 
 	/**
@@ -51,23 +43,8 @@ public interface IBaseDao<T> {
 	 * @param obj
 	 * @return
 	 */
-	public void delete(T obj);
-
-	/**
-	 * 新增或更新一个对象(根据Id删除)
-	 * 
-	 * @param Long
-	 * @return
-	 */
 	public void delete(Long id);
-
-	/**
-	 * 根据Id删除
-	 * 
-	 * @param int
-	 * @return
-	 */
-	public void delete(int id);
+	public void delete(T obj);
 
 	/**
 	 * 执行hql查询

@@ -47,7 +47,7 @@ public class SystemFunctionController extends BaseController {
 	}
 
 	@RequestMapping("/systemFunctionInfo")
-	public String systemFunctionInfo(HttpServletRequest request, int id) throws Exception {
+	public String systemFunctionInfo(HttpServletRequest request, long id) throws Exception {
 		request.setAttribute("systemFunction", functionService.getById(id));
 		return "function/function_info";
 	}
@@ -65,7 +65,7 @@ public class SystemFunctionController extends BaseController {
 	}
 	
 	@RequestMapping("/delete")
-	public void delete(HttpServletResponse response, int id) throws Exception {
+	public void delete(HttpServletResponse response, long id) throws Exception {
 		Json json = new Json();
 		try {
 			functionService.deleteFunction(id);

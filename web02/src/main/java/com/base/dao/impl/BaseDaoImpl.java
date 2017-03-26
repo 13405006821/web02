@@ -54,34 +54,11 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 		return (T) getCurrentSession().get(modelClass, id);
 	}
 
-	@SuppressWarnings("unchecked")
-	public T load(int id) {
-		return (T) getCurrentSession().get(modelClass, id);
-	}
-
-	@SuppressWarnings("unchecked")
-	public T load(String id) {
-		return (T) getCurrentSession().get(modelClass, id);
-	}
-
 	public T save(T obj) {
 		getCurrentSession().save(obj);
 		return obj;
 	}
 	
-	public T updateClear(T obj) {
-		getCurrentSession().clear();
-		getCurrentSession().update(obj);
-		return obj;
-	}
-	
-	public T updatef(T obj) {
-		getCurrentSession().clear();
-		getCurrentSession().update(obj);
-		getCurrentSession().flush();
-		return obj;
-	}
-
 	public T update(T obj) {
 		getCurrentSession().update(obj);
 		return obj;
@@ -91,17 +68,16 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 		getCurrentSession().saveOrUpdate(obj);
 		return obj;
 	}
+	
+	public void delete(Long id) {
+		T obj = this.load(id);
+		if(obj != null){
+			getCurrentSession().delete(obj);
+		}
+	}
 
 	public void delete(T obj) {
 		getCurrentSession().delete(obj);
-	}
-
-	public void delete(int id) {
-		delete(load(id));
-	}
-
-	public void delete(Long id) {
-		delete(load(id));
 	}
 
 	@SuppressWarnings("unchecked")

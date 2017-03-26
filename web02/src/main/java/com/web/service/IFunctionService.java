@@ -8,9 +8,9 @@ public interface IFunctionService {
 
 	List<SystemFunction> findList(String function, Boolean complete, int start, int length);
 
-	void deleteFunction(Integer id);
+	void deleteFunction(Long id);
 
-	SystemFunction getById(Integer id);
+	SystemFunction getById(Long id);
 
 	void saveOrUpdate(SystemFunction function);
 

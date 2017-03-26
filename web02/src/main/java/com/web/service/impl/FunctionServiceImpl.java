@@ -37,12 +37,15 @@ public class FunctionServiceImpl implements IFunctionService {
 	}
 
 	@Override
-	public void deleteFunction(Integer id) {
-		functionDao.delete(id);
+	public void deleteFunction(Long id) {
+		SystemFunction systemFunction = this.getById(id);
+		if(systemFunction != null){
+			functionDao.delete(systemFunction);
+		}
 	}
 
 	@Override
-	public SystemFunction getById(Integer id) {
+	public SystemFunction getById(Long id) {
 		return functionDao.load(id);
 	}
 
@@ -65,7 +68,7 @@ public class FunctionServiceImpl implements IFunctionService {
 	public void deleteByIds(String ids) {
 		String[] idArr = ids.split(",");
 		for(String id : idArr){
-			functionDao.delete(Integer.valueOf(id));
+			functionDao.delete(Long.valueOf(id));
 		}
 	}
 
@@ -74,7 +77,7 @@ public class FunctionServiceImpl implements IFunctionService {
 		String[] idArr = ids.split(",");
 		SystemFunction function = null;
 		for(String id : idArr){
-			function = functionDao.load(Integer.valueOf(id));
+			function = functionDao.load(Long.valueOf(id));
 			function.setComplete(true);
 			function.setCompleteTime(new Date());
 			functionDao.update(function);
@@ -86,7 +89,7 @@ public class FunctionServiceImpl implements IFunctionService {
 		String[] idArr = ids.split(",");
 		SystemFunction function = null;
 		for(String id : idArr){
-			function = functionDao.load(Integer.valueOf(id));
+			function = functionDao.load(Long.valueOf(id));
 			function.setComplete(false);
 			function.setCompleteTime(null);
 			functionDao.update(function);
