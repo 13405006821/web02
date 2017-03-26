@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +52,7 @@ public class SystemFunctionController extends BaseController {
 	}
 	
 	@RequestMapping("/saveOrUpdate")
-	public void saveOrUpdate(HttpServletResponse response, SystemFunction systemFunction) throws Exception {
+	public void saveOrUpdate(SystemFunction systemFunction) throws Exception {
 		Json json = new Json();
 		try {
 			functionService.saveOrUpdate(systemFunction);
@@ -61,11 +60,11 @@ public class SystemFunctionController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		writeJson(response, json);
+		writeJson(json);
 	}
 	
 	@RequestMapping("/delete")
-	public void delete(HttpServletResponse response, long id) throws Exception {
+	public void delete(long id) throws Exception {
 		Json json = new Json();
 		try {
 			functionService.deleteFunction(id);
@@ -73,11 +72,11 @@ public class SystemFunctionController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		writeJson(response, json);
+		writeJson(json);
 	}
 	
 	@RequestMapping("/deleteByIds")
-	public void deleteByIds(HttpServletResponse response, String ids) throws Exception {
+	public void deleteByIds(String ids) throws Exception {
 		Json json = new Json();
 		try {
 			functionService.deleteByIds(ids);
@@ -85,11 +84,11 @@ public class SystemFunctionController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		writeJson(response, json);
+		writeJson(json);
 	}
 	
 	@RequestMapping("/complete")
-	public void complete(HttpServletResponse response, String ids) throws Exception {
+	public void complete(String ids) throws Exception {
 		Json json = new Json();
 		try {
 			functionService.complete(ids);
@@ -97,11 +96,11 @@ public class SystemFunctionController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		writeJson(response, json);
+		writeJson(json);
 	}
 	
 	@RequestMapping("/cancel")
-	public void cancel(HttpServletResponse response, String ids) throws Exception {
+	public void cancel(String ids) throws Exception {
 		Json json = new Json();
 		try {
 			functionService.cancel(ids);
@@ -109,6 +108,6 @@ public class SystemFunctionController extends BaseController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		writeJson(response, json);
+		writeJson(json);
 	}
 }

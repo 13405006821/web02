@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import com.alibaba.fastjson.JSON;
@@ -19,11 +20,20 @@ import com.base.util.Page;
 public abstract class BaseController extends DispatcherServlet {
 
 	private static final long serialVersionUID = 1L;
+	
+	private HttpServletRequest request;
+	private HttpServletResponse response;
 
 	// 分页使用
 	private Page pager;
 	private int startIndex = 1;
 	private int pageSize = 10;
+	
+	@ModelAttribute
+	public void setReqAndRes(HttpServletRequest request, HttpServletResponse response) {
+		this.request = request;
+		this.response = response;
+	}
 
 	/**
 	 * 将对象转换成JSON字符串，并响应回前台
@@ -31,10 +41,9 @@ public abstract class BaseController extends DispatcherServlet {
 	 * @param object
 	 * @throws IOException
 	 */
-	public void writeJson(HttpServletResponse response, Object object) {
+	public void writeJson(Object object) {
 		try {
-			String json = JSON.toJSONStringWithDateFormat(object,
-					"yyyy-MM-dd HH:mm:ss");
+			String json = JSON.toJSONStringWithDateFormat(object, "yyyy-MM-dd HH:mm:ss");
 			response.setContentType("text/json;charset=utf-8");
 			System.out.println(json);
 			response.getWriter().write(json);
@@ -75,5 +84,21 @@ public abstract class BaseController extends DispatcherServlet {
 
 	public void setPager(Page pager) {
 		this.pager = pager;
+	}
+
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
+	}
+
+	public HttpServletResponse getResponse() {
+		return response;
+	}
+
+	public void setResponse(HttpServletResponse response) {
+		this.response = response;
 	}
 }
