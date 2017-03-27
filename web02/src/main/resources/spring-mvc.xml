@@ -15,23 +15,22 @@
 
 	<!-- 使用SpringMVC自带的CommonsMultipartResolver实现多个文件上传的功能   org.springframework.web.multipart.commons.CommonsMultipartResolver-->
 	<mvc:annotation-driven/>
-	
+
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/pages/" />
+		<property name="prefix" value="/WEB-INF/pages/" />
 		<property name="suffix" value=".jsp" />
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 	</bean>
-	
+
 	<mvc:default-servlet-handler />
-     
-    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
-        <property name="exceptionMappings"> 
-            <props> 
-                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">/handelException</prop> 
-            </props> 
-        </property> 
-    </bean>
-    
+
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
+		<property name="exceptionMappings"> 
+			<props> 
+				<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">/handelException</prop> 
+			</props> 
+		</property> 
+	</bean>
+
 	<aop:aspectj-autoproxy proxy-target-class="true" />
-	
 </beans>
